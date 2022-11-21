@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MembershipComponent } from '../users/components/membership/membership.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-
-
+import { PopUpComponent } from './components/pop-up/pop-up.component';
+import { SearchPipe } from './pipes/pipes';
 
 @NgModule({
   declarations: [
-    MembershipComponent
+  
+    PopUpComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
     AppRoutingModule
   ],
   exports:[
-    MembershipComponent
+    PopUpComponent,
+    SearchPipe
   ]
 })
 export class SharedModule { }

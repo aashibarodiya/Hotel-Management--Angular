@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NGXLogger } from 'ngx-logger';
 import { Observable } from 'rxjs';
 import { LoggedInDetails, LoginInfo, User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -11,7 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent implements OnInit {
  
-  componentName="Login"
+  
   constructor(
     @Inject("UserService") private userService: UserService,
     private router: Router
@@ -37,26 +38,27 @@ export class LoginComponent implements OnInit {
             console.log(info);
             const user=info.user;
             console.log('user',user);
+            console.log(this.status);
             this.status=`Welcome ${user.name}`;
+            console.log(this.status);
             this.statusStyle='text-success';
             this.router.navigate(['home']);
           },
           error: (error:any)=>{
+         
             this.status=`Error: ${error.status}`;
             this.statusStyle='text-danger';
           }
         });
 
         this.status='please wait...';
-        this.statusStyle='text-primary';
-
+        this.statusStyle='text-primary'; 
+        
 
   }
 
   ngOnInit(): void {
+    //localStorage.setItem("token",this.loggedInUser!.email);
   }
 
 }
-
-
-

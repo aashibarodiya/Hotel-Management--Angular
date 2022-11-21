@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GalleryComponent } from './gallery.component';
@@ -5,6 +6,7 @@ import { GalleryComponent } from './gallery.component';
 describe('GalleryComponent', () => {
   let component: GalleryComponent;
   let fixture: ComponentFixture<GalleryComponent>;
+  let el:DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,4 +22,5 @@ describe('GalleryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

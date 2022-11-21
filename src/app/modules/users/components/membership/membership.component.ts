@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/modules/users/services/user.service';
 
 @Component({
@@ -6,12 +7,14 @@ import { UserService } from 'src/app/modules/users/services/user.service';
   templateUrl: './membership.component.html',
   styleUrls: ['./membership.component.css']
 })
+
+
 export class MembershipComponent implements OnInit {
 
   user?:any;  
 
-  constructor(@Inject("UserService")private userService: UserService) { }  
-
+  constructor(@Inject("UserService")private userService: UserService, private router:Router) { }  
+ // This is helper method sets the logged-in user
   updateUserStatus(details:any): void {
     
     if(details)
@@ -21,6 +24,7 @@ export class MembershipComponent implements OnInit {
 
   }
 
+  //This method intializes the membership component
   ngOnInit(): void {
     
       console.log('membership component initialized');
@@ -30,21 +34,19 @@ export class MembershipComponent implements OnInit {
       this
         .userService
         .getUserStatusAnnouncement()
-        .subscribe(details=>this.updateUserStatus(details))
-      console.log("Membership user",this.user);
-      
+        .subscribe(details=>this.updateUserStatus(details))      
   }
-
-
+ 
+  // This method unsubscribe 
   ngOnDestroy(): void {
    
     this.userService.getUserStatusAnnouncement().unsubscribe();
   }
 
- 
-  
+  // This method handle logged-out of the user and navigate to the login page
   async handleLogout(){
     await this.userService.logOut();
+  this.router.navigate(['user/login'])
   }
 
   

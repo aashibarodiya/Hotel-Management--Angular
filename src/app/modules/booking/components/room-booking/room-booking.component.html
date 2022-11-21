@@ -1,1 +1,51 @@
-<p>room-booking works!</p>
+
+<!-- This will display the room-booking page, which contains a form for booking -->
+
+<div class="row" *ngIf="user">
+    <div class="col-md-3"></div>
+    <div class="col col-md-4">
+
+        <h3>Room booking</h3>
+        <!-- form created -->
+        <form (ngSubmit)="bookRoom()"  #bookingForm="ngForm">
+      
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+
+                <input type="email" class="form-control" placeholder="User email" aria-label="Username" 
+                required email
+                     
+                    name="booking.userId"  [(ngModel)]="user.email"
+                    aria-describedby="basic-addon1"
+                   [disabled]="true">
+            </div>
+
+           
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </span>
+                <input type="number" class="form-control" placeholder="Number of days"
+                   name="booking.numberOfDaysStay" aria-label="number of days"
+                    [(ngModel)]="booking.numberOfDaysStay" 
+                     aria-describedby="basic-addon1" required 
+                      />
+
+            </div>
+            
+            <button type="submit" class="btn btn-primary" 
+            
+           >
+                <i class="fa-solid fa-check-to-slot"></i> Book
+            </button>            
+        </form>
+        <div>
+            <div class="col-md-3"></div>
+        </div>
+
+    </div>
+
+
+</div>
+

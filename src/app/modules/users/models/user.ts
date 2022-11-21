@@ -6,15 +6,15 @@ export interface LoginInfo
 export interface User extends LoginInfo
 {
     name:string;
-    profileUrl:string;
+    profilePic:string;
     phoneNumber:string;
-    aadharId:string;
+    aadhaarId:string;
+    userBookings?:any;
 }
 
-//Created LoggedInDetails with user and token for authentication
+// Created LoggedInDetails with user and token for authentication
 export interface LoggedInDetails
 {
-
     user:User;
     token:string;
 }

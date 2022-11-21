@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-//import { compare } from 'src/app/modules/shared/directives/compare.directive';
+import { compare } from 'src/app/modules/shared/directives/compare.directive';
+import { uniqueEmailValidator } from 'src/app/modules/shared/directives/unique-email.directive';
+
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -27,11 +29,23 @@ export class RegisterComponent implements OnInit {
               private router:Router
               ) {
 
-    // Declaring password rules
-    const passwordRules=[
+    // Declaring password, phone number and aadhaar id validators
+    const passwordValidators=[
       Validators.required, 
       Validators.minLength(4),
       Validators.maxLength(15)
+    ];
+
+    const phoneNumberValidators=[
+      Validators.required, 
+      Validators.minLength(10),
+      Validators.maxLength(10)
+    ];
+
+    const aadhaarIdValidators=[
+      Validators.required, 
+      Validators.minLength(12),
+      Validators.maxLength(12)
     ];
 
     // Creating form with builder
@@ -42,19 +56,19 @@ export class RegisterComponent implements OnInit {
                   Validators.email, 
                 ],
                 [
-                  //uniqueEmailValidator(this.userService)
+                  uniqueEmailValidator(this.userService)
                 ]
             ],
       profileUrl:['',[
                   Validators.required
       ]],
-      password:['',passwordRules],
-      confirmPassword:['',passwordRules],
-      phoneNumber:['',Validators.required],
-      aadhaarId:['',Validators.required]
+      password:['',passwordValidators],
+      confirmPassword:['',passwordValidators],
+      phoneNumber:['',phoneNumberValidators],
+      aadhaarId:['',aadhaarIdValidators]
     
     },
-    //{validator: compare('password','confirmPassword')}
+    {validator: compare('password','confirmPassword')}
     );
   }
   /*

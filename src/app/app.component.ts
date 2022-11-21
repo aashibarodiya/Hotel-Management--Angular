@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import* as userService from 'src/app/modules/users/services/user.service'
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,9 @@ import* as userService from 'src/app/modules/users/services/user.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public userservice!: userService.UserService;
+  constructor(private logger: NGXLogger)
+  {
+    this.logger.info("Application started");
+  }
   title = 'HotelManagement-Client';
 }

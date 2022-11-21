@@ -1,16 +1,17 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { NGXLogger } from "ngx-logger";
 import { catchError, map, Observable, of, Subject, tap, throwError } from "rxjs";
 import { LoggedInDetails, LoginInfo, User } from "../models/user";
 import { UserService } from "./user.service";
 
 
-const baseUrl='https://localhost:5000/api/users';
+const baseUrl='https://localhost:7066/api/users';
 
 @Injectable()
 export class HttpUserService implements UserService{
 
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient, private logger:NGXLogger){
         if(!this.loggedInUser)
         {
             var jsonString = localStorage.getItem("user");
@@ -21,16 +22,20 @@ export class HttpUserService implements UserService{
             }
         }
     }
-    
+    getUserByEmail(email: string): Observable<User> {
+        this.logger.trace('Entering into getUserByEmail method of user service');
+        return this.http.get<User>(baseUrl+'/'+email);
+    }
     
     getLoggedInUser(): LoggedInDetails|undefined {
+        this.logger.trace('Entering into getLoggedInUser method of user service');
         return this.loggedInUser;
     }
-    getAllUsers(): Observable<User[]> {
-        return this
-                    .http
-                    .get<User[]>(baseUrl);
-    }
+    // getAllUsers(): Observable<User[]> {
+    //     return this
+    //                 .http
+    //                 .get<User[]>(baseUrl);
+    // }
    
     loggedInUserAnnouncement = new Subject<LoggedInDetails|undefined>();
     loggedInUser?:LoggedInDetails;
@@ -44,7 +49,9 @@ export class HttpUserService implements UserService{
                 Authorization:`BEARER ${this.loggedInUser.token}`
             }
     }
+
     updateCurrentUser(user?:LoggedInDetails){
+        this.logger.trace('Entering into updateCurrentUser method of user service');
         this.loggedInUser=user;
         this.loggedInUserAnnouncement.next(user);
         if(this.loggedInUser)
@@ -60,13 +67,17 @@ export class HttpUserService implements UserService{
                     .pipe(
                         tap( (info:LoggedInDetails)=>{
                             console.log('user info received on login:',info);
+                            this.logger.trace('Inside login method of user service');
                             this.updateCurrentUser(info);
                         })
                     );
 
+
+
     }
     
     register(user: User):  Observable<User> {
+       
         return this.http.post<User>(baseUrl , user,{headers:{
             "content-type":"application/json"
         }});
@@ -91,13 +102,15 @@ export class HttpUserService implements UserService{
        
     }
     getUserStatusAnnouncement(): Subject<LoggedInDetails | undefined> {
+      
        return this.loggedInUserAnnouncement;
     }
 
   
-    logOut(): Promise<void> | Observable<void> {
+    logOut():Observable<void> {
+       
         this.updateCurrentUser();
-        return of(undefined);
+        return of();
     }
     
 }

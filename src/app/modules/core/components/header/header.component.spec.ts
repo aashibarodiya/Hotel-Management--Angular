@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
 
 import { HeaderComponent } from './header.component';
 
@@ -20,4 +21,18 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // it('should render title', () => {
+  //   const fixture = TestBed.createComponent(HeaderComponent);
+  //   fixture.detectChanges();
+  //   const compiled = fixture.nativeElement as HTMLElement;
+    
+  //   expect(compiled.querySelector('.content span')?.textContent).toContain('');
+  // });
+it('should have title as Awesome Hotel',(()=>{
+  const fixture=TestBed.createComponent(HeaderComponent);
+  const app=fixture.debugElement.componentInstance;
+  expect(app.title).toEqual('HotelManagement-Client')
+}))
+
 });

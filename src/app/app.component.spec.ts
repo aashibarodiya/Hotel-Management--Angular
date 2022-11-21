@@ -1,12 +1,20 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LoggerTestingModule } from 'ngx-logger/testing';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpBookingService } from './modules/booking/services/http-booking-service';
+import { CoreModule } from './modules/core/core.module';
+import { InterceptorService } from './modules/core/interceptors/interceptor.service';
+import { HttpUserService } from './modules/users/services/http-user-service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,LoggerTestingModule
       ],
       declarations: [
         AppComponent
@@ -26,10 +34,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('HotelManagement-Client');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('HotelManagement-Client app is running!');
-  });
+ 
 });

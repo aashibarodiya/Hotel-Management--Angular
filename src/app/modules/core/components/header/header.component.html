@@ -1,3 +1,4 @@
+<!-- Display header navbar -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" >
     <div class="container-fluid">
       <a class="navbar-brand" [routerLink]="['/']" >{{title}}</a>
@@ -7,24 +8,23 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" [routerLink]='["/booking/gallery"]' aria-current="page"><i class="fa-solid fa-list"></i>Rooms</a>
-          </li>
+        
 
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" [routerLink]='["booking/gallery"]' ><i class="fa-solid fa-plus"></i> Gallery</a>
+            <a class="nav-link"  data-bs-target="#navbarSupportedContent" [routerLink]='["booking/gallery"]' ><i class="fa-solid fa-image"></i> Gallery</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"  aria-current="page" ><i class="fa-solid fa-list"></i>Booking's</a>
+            <a class="nav-link"  data-bs-target="#navbarSupportedContent"  aria-current="page" [routerLink]="['booking']" ><i class="fa-solid fa-list"></i>Booking's</a>
           </li>
           
         </ul>
         
-
-        <membership class="px-4"></membership> 
+  
+        <membership></membership>
 
       </div>
    
     </div>
   </nav>
+  
 

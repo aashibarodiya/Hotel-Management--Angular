@@ -1,3 +1,4 @@
+<!-- Display the membership component in the header -->
 <ul class="navbar-nav mb-2 mb-lg-0 ">            
     <li class="nav-item dropdown">
       <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -9,7 +10,7 @@
         <li *ngIf="!user"><a   class="dropdown-item" [routerLink]='["/user/login"]'><i class="fa-solid fa-unlock"></i>Login</a></li>
         <li *ngIf="!user"><a   class="dropdown-item" [routerLink]='["/user/register"]'><i class="fa-solid fa-user-plus"></i>Register</a></li>
         
-        <li *ngIf="user"><a   class="dropdown-item" [routerLink]='["/user/profile"]'><i class="fa-solid fa-home"></i>Home</a></li>
+        <li *ngIf="user"><a   class="dropdown-item" [routerLink]='["/user/profile",user.email]'><i class="fa-solid fa-book"></i>My Bookings</a></li>
       
         <li *ngIf="user"><hr class="dropdown-divider"></li>
         <li *ngIf="user"><button   class="dropdown-item" (click)="handleLogout()"><i class="fa-solid fa-lock"></i>Logout</button></li>
