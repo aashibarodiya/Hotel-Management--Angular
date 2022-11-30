@@ -1,12 +1,15 @@
+
+
 {
   "name": "hotel-management-client",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve -o",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "ng": "nx",
+    "start": "nx serve -o",
+    "build": "nx build",
+    "watch": "nx build --watch --configuration development",
+    "test": "nx test",
+    "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +25,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@ngrx/component": "^14.3.2",
     "@ngrx/store": "^14.3.2",
+    "@nrwl/angular": "^15.2.1",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "jquery": "^3.6.1",
@@ -41,6 +45,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "@nrwl/workspace": "15.2.1",
+    "nx": "15.2.1",
+    "prettier": "^2.6.2"
   }
 }

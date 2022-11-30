@@ -1,5 +1,7 @@
 # HotelManagementClient
 
+<!-- important information about the installation or usage a of certain software program or software update; may be included with a software installer or installed with an application. -->
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
 
 ## Development server

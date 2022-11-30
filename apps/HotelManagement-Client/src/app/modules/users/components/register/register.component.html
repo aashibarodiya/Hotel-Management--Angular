@@ -1,0 +1,165 @@
+<!-- Registration Screen -->
+
+<div class="row register-component">
+    <div class="col-md-3">
+        
+    </div>
+    <div class="col col-md-4 registration-form">
+
+        <h3>User Registration</h3>
+        <!-- Registration form -->
+        <form (ngSubmit)="handleRegistration()" [formGroup]="form" >
+            <!-- Name input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Full name" 
+                    formControlName="name"
+                    />
+            </div>
+            <!-- Displaying validation errors of name input element -->
+            <p *ngIf="form.controls!['name'].invalid && form.controls!['name'].dirty" class="text-danger text-sm">
+                Required
+            </p> 
+            <!-- Email input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-envelope"></i></span>
+                <input type="email" class="form-control" placeholder="Email Id" 
+                    formControlName="email"
+                    />
+            </div>
+            <!-- Displaying validation errors of email input element -->
+            <ul  *ngIf="form.controls!['email'].invalid && form.controls!['email'].dirty" class="text-danger text-sm">
+                <li *ngIf="form.controls!['email'].errors!['required']" >Required</li>
+                <li *ngIf="form.controls!['email'].errors!['email']">Invalid Email</li>
+                <li *ngIf="form.controls!['email'].errors!['uniqueEmail']">
+
+                    {{form.controls!['email'].errors!['uniqueEmail'].message}}
+    
+                </li>
+            </ul>
+            
+    
+            <!-- Password input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa-solid fa-key"></i>
+                </span>
+                <input type="password" class="form-control" placeholder="password" aria-label="password"                     
+                    
+                    formControlName="password"
+                    />
+            </div>
+            <!-- Displaying validation errors of password input element-->
+            <p *ngIf="form.controls!['password'].invalid && form.controls!['password'].dirty" class="text-danger text-sm">
+                <span *ngIf="form.controls!['password'].errors!['required']" >Required</span>
+                <span *ngIf="form.controls!['password'].errors!['minlength']">
+                    Min {{form.controls!['password'].errors!['minlength']!.requiredLength}} chars required. Current is {{form.controls!['password'].errors!['minlength']!.actualLength}}
+                </span>
+                <span *ngIf="form.controls!['password'].errors!['maxlength']">
+                    Max {{form.controls!['password'].errors!['maxlength']!.requiredLength}} chars required. Current is {{form.controls!['password'].errors!['maxlength']!.actualLength}}
+                </span>
+            </p> 
+            <!-- Confirm Password input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa-solid fa-key"></i>
+                </span>
+                <input type="password" class="form-control" placeholder="re-type your password" aria-label="password"                     
+                    
+                    formControlName="confirmPassword"
+                    />
+            </div>
+            <!-- Displaying validation errors of confirm password-->
+            <p *ngIf="form.controls!['confirmPassword'].invalid && form.controls!['confirmPassword'].dirty" class="text-danger text-sm">
+                <span *ngIf="form.controls!['confirmPassword'].errors!['required']" >Required</span>
+                <span *ngIf="form.controls!['confirmPassword'].errors!['minlength']">
+                    Min {{form.controls!['confirmPassword'].errors!['minlength']!.requiredLength}} chars required. Current is {{form.controls!['confirmPassword'].errors!['minlength']!.actualLength}}
+                </span>
+                <span *ngIf="form.controls!['confirmPassword'].errors!['maxlength']">
+                    Max {{form.controls!['confirmPassword'].errors!['maxlength']!.requiredLength}} chars required. Current is {{form.controls!['confirmPassword'].errors!['maxlength']!.actualLength}}
+                </span>
+            </p>
+            <p *ngIf="form.controls['password']!.dirty && form.controls['confirmPassword']!.dirty && form.errors && form.errors['compare']" class="text-danger">
+                {{form.errors!['compare'].message}}
+            </p>
+
+            <!-- Profile Url Input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fa-solid fa-image"></i>
+                </span>
+                <input type="url" class="form-control" placeholder="enter your profile photo url" aria-label="profilePic"                     
+                    url #profileImage
+                    formControlName="profileUrl"
+                    />
+            </div>
+            <!-- Displaying validation errors of profileUrl input element -->
+            <p *ngIf="form.controls!['profileUrl'].invalid && form.controls!['profileUrl'].dirty" class="text-danger text-sm">
+                <span *ngIf="form.controls!['profileUrl'].errors!['required']" >Required</span>
+                <span *ngIf="form.controls!['profileUrl'].errors!['pattern']" >Invalid url</span>
+            </p>
+
+             <!-- Phone number Input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </span>
+                <input type="tel" class="form-control" placeholder="Phone number" 
+                    formControlName="phoneNumber"
+                    />
+            </div>
+            <!-- Displaying validation errors of phone number-->
+            <p *ngIf="form.controls!['phoneNumber'].invalid && form.controls!['phoneNumber'].dirty" class="text-danger text-sm">
+                <span *ngIf="form.controls!['phoneNumber'].errors!['required']" >Required</span>
+                <span *ngIf="form.controls!['phoneNumber'].errors!['minlength']">
+                    Min {{form.controls!['phoneNumber'].errors!['minlength']!.requiredLength}} chars required. Current is {{form.controls!['phoneNumber'].errors!['minlength']!.actualLength}}
+                </span>
+                <span *ngIf="form.controls!['phoneNumber'].errors!['maxlength']">
+                    Max {{form.controls!['phoneNumber'].errors!['maxlength']!.requiredLength}} chars required. Current is {{form.controls!['phoneNumber'].errors!['maxlength']!.actualLength}}
+                </span>
+            </p>
+             <!-- Aadhaar ID Input element -->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fa-solid fa-id-card"></i>
+                </span>
+                <input type="tel" class="form-control" placeholder="12 digit Aadhaar ID" 
+                    formControlName="aadhaarId"
+                    />
+            </div>
+             <!-- Displaying validation errors of phone number-->
+             <p *ngIf="form.controls!['aadhaarId'].invalid && form.controls!['aadhaarId'].dirty" class="text-danger text-sm">
+                <span *ngIf="form.controls!['aadhaarId'].errors!['required']" >Required</span>
+                <span *ngIf="form.controls!['aadhaarId'].errors!['minlength']">
+                    Min {{form.controls!['aadhaarId'].errors!['minlength']!.requiredLength}} chars required. Current is {{form.controls!['aadhaarId'].errors!['minlength']!.actualLength}}
+                </span>
+                <span *ngIf="form.controls!['aadhaarId'].errors!['maxlength']">
+                    Max {{form.controls!['aadhaarId'].errors!['maxlength']!.requiredLength}} chars required. Current is {{form.controls!['aadhaarId'].errors!['maxlength']!.actualLength}}
+                </span>
+            </p>
+            <!-- Register button  for submission-->
+            <button type="submit" class="btn btn-primary"
+                >
+                <i class="fa-solid fa-user-plus"></i> Register
+            </button>
+
+             <span [class]="statusStyle"> {{status}}</span>
+        </form>
+        <div>
+        </div>
+    </div>
+    
+    <!-- Displaying the profile image -->
+
+    <div class="col-md-2">
+        <img src="{{profileImage.value}}"/>
+    </div>
+
+    <div class="col-md-3">    
+    </div>
+</div>
+
+
+
